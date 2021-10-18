@@ -1,0 +1,8 @@
+// Install all dependencies
+
+-   npm install
+
+// Run instance docker compose - App with Postgresql
+
+-   docker-compose build
+-   docker-compose up -d

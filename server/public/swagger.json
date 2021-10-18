@@ -1,0 +1,202 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Url": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"url": {
+						"type": "string"
+					},
+					"short_code": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"url",
+					"short_code",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUrlResponse": {
+				"properties": {
+					"urls": {
+						"items": {
+							"$ref": "#/components/schemas/Url"
+						},
+						"type": "array"
+					},
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"lastPage": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"urls",
+					"total",
+					"page",
+					"lastPage"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUrlPayload": {
+				"properties": {
+					"url": {
+						"type": "string"
+					},
+					"short_code": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"url",
+					"short_code"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "PINPOINT",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/urls/{page}/{perPage}": {
+			"get": {
+				"operationId": "GetUrls",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IUrlResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Url"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "page",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "perPage",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/urls": {
+			"post": {
+				"operationId": "CreateUrl",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Url"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Url"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUrlPayload"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteUrl",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string",
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Url"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

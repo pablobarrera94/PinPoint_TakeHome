@@ -1,0 +1,6 @@
+//  Start application
+
+-   npm start
+
+** Note: using dotenv, should use .gitignore to not publish .env file to a repository for security purposes but just for the demo I'm not doing this step.
+
